@@ -1,6 +1,5 @@
 import "./BookList.css";
 import { useSelector } from "react-redux";
-import { listenerCancelled } from "./../../../../node_modules/@reduxjs/toolkit/src/listenerMiddleware/exceptions";
 
 const BookList = () => {
     const books = useSelector((state) => {
@@ -16,7 +15,7 @@ const BookList = () => {
             ) : (
                 <ul>
                     {books.map((book, i) => (
-                        <li key={i}>
+                        <li key={book.id}>
                             <div className="book-info">
                                 {++i}.{book.title} by{" "}
                                 <strong>{book.author}</strong>
