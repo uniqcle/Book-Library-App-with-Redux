@@ -1,10 +1,17 @@
-import * as action from './actionTypes'; 
+import * as action from "./actionTypes";
 
- const addBook = (newBook) => {
-	return {
-		type: action.ADD_BOOK,
-		payload: newBook
-	}
-}
+const addBook = (newBook) => {
+    return {
+        type: action.ADD_BOOK,
+        payload: newBook,
+    };
+};
 
-export {addBook}
+const deleteBook = (id) => {
+    return {
+        type: action.DELETE_BOOK,
+        payload: id,
+    };
+};
+
+export { addBook, deleteBook };
