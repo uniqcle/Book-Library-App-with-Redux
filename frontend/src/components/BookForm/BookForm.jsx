@@ -19,6 +19,7 @@ const BookForm = () => {
             const newBook = {
                 title: title,
                 author,
+                isFavor: false,
                 id: uuidv4(),
             };
             console.log(addBook(newBook));
@@ -34,6 +35,7 @@ const BookForm = () => {
         const randomBook = booksData[randIndex];
         const randomBookWithId = {
             ...randomBook,
+            isFavor: false,
             id: uuidv4(),
         };
 

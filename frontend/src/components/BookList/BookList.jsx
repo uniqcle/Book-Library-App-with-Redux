@@ -1,6 +1,8 @@
 import "./BookList.css";
+
 import { useDispatch, useSelector } from "react-redux";
-import { deleteBook } from "../../redux/books/actionCreators";
+import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { deleteBook, toggleFavor } from "../../redux/books/actionCreators";
 
 const BookList = () => {
     const dispatch = useDispatch();
@@ -13,7 +15,10 @@ const BookList = () => {
         dispatch(deleteBook(id));
     };
 
-    console.log(books);
+    const handleToggleFavor = (id) => {
+        dispatch(toggleFavor(id));
+    };
+
     return (
         <div className="app-block book-list">
             <h2>Book List</h2>
@@ -27,7 +32,24 @@ const BookList = () => {
                                 {++i}.{book.title} by{" "}
                                 <strong>{book.author}</strong>
                             </div>
+
                             <div className="book-actions">
+                                {book.isFavor ? (
+                                    <MdOutlineFavorite
+                                        className="star-icon"
+                                        onClick={(e) =>
+                                            handleToggleFavor(book.id)
+                                        }
+                                    />
+                                ) : (
+                                    <MdFavoriteBorder
+                                        className="star-icon"
+                                        onClick={(e) =>
+                                            handleToggleFavor(book.id)
+                                        }
+                                    />
+                                )}
+
                                 <button onClick={() => handleDelete(book.id)}>
                                     Delete
                                 </button>

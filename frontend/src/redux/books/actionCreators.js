@@ -14,4 +14,11 @@ const deleteBook = (id) => {
     };
 };
 
-export { addBook, deleteBook };
+const toggleFavor = (id) => {
+    return {
+        type: action.TOOGLE_FAVOR,
+        payload: id,
+    };
+};
+
+export { addBook, deleteBook, toggleFavor };
