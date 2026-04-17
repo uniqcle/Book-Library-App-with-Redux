@@ -3,12 +3,21 @@ import "./BookList.css";
 import { useDispatch, useSelector } from "react-redux";
 import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { deleteBook, toggleFavor } from "../../redux/books/actionCreators";
+import { selectTitleFilter } from "../../redux/slices/filterSlice";
 
 const BookList = () => {
     const dispatch = useDispatch();
 
     const books = useSelector((state) => {
         return state.books;
+    });
+    const titleFilter = useSelector(selectTitleFilter);
+
+    const filteredBooks = books.filter((book) => {
+        const matchesTitle = book.title
+            .toLowerCase()
+            .includes(titleFilter.toLowerCase());
+        return matchesTitle;
     });
 
     const handleDelete = (id) => {
@@ -26,7 +35,7 @@ const BookList = () => {
                 <p>No books available</p>
             ) : (
                 <ul>
-                    {books.map((book, i) => (
+                    {filteredBooks.map((book, i) => (
                         <li key={book.id}>
                             <div className="book-info">
                                 {++i}.{book.title} by{" "}

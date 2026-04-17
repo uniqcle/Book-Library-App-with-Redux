@@ -9,12 +9,19 @@ const filterSlice = createSlice({
 	initialState, 
 	reducers: {
 		setTitleFilter: (state, action) => {
-			return {...state, title: action.payload}
+            // Можно мутировать состояние, благодаря библиотеке Immer
+            state.title = action.payload;
+
+            // Также можешь возвращать новое состояние как обычно
+            // return { ...state, title: action.payload }
+		}, 
+		resetFilters: (state) => {
+			return initialState; 
 		}
 	}
 })
 
-export const { setTitleFilter } = filterSlice.actions;
+export const { setTitleFilter, resetFilters } = filterSlice.actions;
 
 export const selectTitleFilter = state => state.filter.title; 
 
