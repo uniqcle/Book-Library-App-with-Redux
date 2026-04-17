@@ -6,6 +6,7 @@ import { deleteBook, toggleFavor } from "../../redux/books/actionCreators";
 import {
     selectTitleFilter,
     selectAuthorFilter,
+    selectOnlyFavorFilter,
 } from "../../redux/slices/filterSlice";
 
 const BookList = () => {
@@ -16,6 +17,7 @@ const BookList = () => {
     });
     const titleFilter = useSelector(selectTitleFilter);
     const authorFilter = useSelector(selectAuthorFilter);
+    const onlyFavorFilter = useSelector(selectOnlyFavorFilter);
 
     const filteredBooks = books.filter((book) => {
         const matchesTitle = book.title
@@ -26,7 +28,9 @@ const BookList = () => {
             .toLowerCase()
             .includes(authorFilter.toLowerCase());
 
-        return matchesTitle && matchesAuthor;
+        const matchesFavor = onlyFavorFilter ? book.isFavor : true;
+
+        return matchesTitle && matchesAuthor && matchesFavor;
     });
 
     const handleDelete = (id) => {
