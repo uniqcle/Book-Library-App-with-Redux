@@ -25,7 +25,7 @@ const booksSlice = createSlice({
 		}
 	}
 })
-
+// Thunk function
 export  const thunkFunction = async (dispatch, getState) => {
         try {
             const res = await axios.get("http://localhost:4000/random-book");
