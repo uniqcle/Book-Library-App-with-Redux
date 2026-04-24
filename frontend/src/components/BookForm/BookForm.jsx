@@ -5,6 +5,7 @@ import "./BookForm.css";
 import { useDispatch } from "react-redux";
 //import { addBook } from "../../redux/books/actionCreators";
 import { addBook, fetchBook } from "../../redux/slices/booksSlice";
+import { setError } from "../../redux/slices/errorSlice";
 import booksData from "../../data/books.json";
 
 const BookForm = () => {
@@ -22,6 +23,8 @@ const BookForm = () => {
 
             setTitle("");
             setAuthor("");
+        } else {
+            dispatch(setError("Необходимо ввести заголовок и автора книги"));
         }
     };
 
