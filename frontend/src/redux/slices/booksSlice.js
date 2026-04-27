@@ -39,6 +39,7 @@ const booksSlice = createSlice({
             });
         },
     },
+    // 1-й вариант создания extraReducer, с builder
     extraReducers: (builder) => {
         builder.addCase(fetchBook.fulfilled, (state, action) => {
             if (action.payload.title && action.payload.author) {
@@ -46,14 +47,26 @@ const booksSlice = createSlice({
                 state.push(book);
             }
         });
-        // builder.addCase(fetchBook.rejected, (state, action) => {
-        //      // Было когда ошибки хранил в этом слайсе
-        //     // state.errors = action.error.message;
+        //     // builder.addCase(fetchBook.rejected, (state, action) => {
+        //     //      // Было когда ошибки хранил в этом слайсе
+        //     //     // state.errors = action.error.message;
 
-        // });
-        //},
+        //     // });
+        //     //},
     },
+
+    // 2-й вариант создания extraReducer, без builder
+    // extraReducers: {
+    //     [fetchBook.fulfilled]: (state, action) => {
+    //         if (action.payload.title && action.payload.author) {
+    //             const book = createBookWithID(action.payload, "API");
+    //             state.push(book);
+    //         }
+    //     },
+    // },
 });
+
+
 // Thunk function
 // export const thunkFunction = async (dispatch, getState) => {
 //     try {
